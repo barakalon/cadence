@@ -21,6 +21,7 @@
 package worker
 
 import (
+	"fmt"
 	"sync/atomic"
 	"time"
 
@@ -145,7 +146,9 @@ func (s *Service) Start() {
 
 	if replicatorEnabled || archiverEnabled || scannerEnabled || batcherEnabled {
 		pConfig := s.params.PersistenceConfig
+		s.logger.Info(fmt.Sprintf("persistence max QPS is %v", s.config.ReplicationCfg.PersistenceMaxQPS()))
 		pConfig.SetMaxQPS(pConfig.DefaultStore, s.config.ReplicationCfg.PersistenceMaxQPS())
+		s.logger.Info(fmt.Sprintf("persistence config is %v", pConfig))
 		pFactory := persistencefactory.New(&pConfig, s.params.ClusterMetadata.GetCurrentClusterName(), s.metricsClient, s.logger)
 
 		if archiverEnabled || scannerEnabled {
