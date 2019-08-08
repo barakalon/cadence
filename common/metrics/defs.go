@@ -513,6 +513,9 @@ const (
 	// HistoryArchiverScope is used by history archivers
 	HistoryArchiverScope
 
+	// ArchivalSizeScopeAndrew is a test scope used to benchmark terrablob
+	ArchivalSizeScopeAndrew
+
 	// The following metrics are only used by internal archiver implemention.
 	// TODO: move them to internal repo once cadence plugin model is in place.
 
@@ -1057,6 +1060,8 @@ var ScopeDefs = map[ServiceIdx]map[int]scopeDefinition{
 		SequentialTaskProcessingScope:                              {operation: "SequentialTaskProcessing"},
 
 		HistoryArchiverScope: {operation: "HistoryArchiver"},
+
+		ArchivalSizeScopeAndrew: {operation: "ArchivalSizeScopeAndrew"},
 
 		BlobstoreClientUploadScope:          {operation: "BlobstoreClientUpload", tags: map[string]string{CadenceRoleTagName: BlobstoreRoleTagValue}},
 		BlobstoreClientDownloadScope:        {operation: "BlobstoreClientDownload", tags: map[string]string{CadenceRoleTagName: BlobstoreRoleTagValue}},
