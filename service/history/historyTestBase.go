@@ -546,14 +546,14 @@ func (s *TestShardContext) GetCurrentTime(cluster string) time.Time {
 // NewDynamicConfigForTest return dc for test
 func NewDynamicConfigForTest() *Config {
 	dc := dynamicconfig.NewNopCollection()
-	config := NewConfig(dc, 1, false, cconfig.StoreTypeCassandra)
+	config := NewConfig(dc, 1, cconfig.StoreTypeCassandra)
 	return config
 }
 
 // NewDynamicConfigForEventsV2Test with enableEventsV2 = true
 func NewDynamicConfigForEventsV2Test() *Config {
 	dc := dynamicconfig.NewNopCollection()
-	config := NewConfig(dc, 1, false, cconfig.StoreTypeCassandra)
+	config := NewConfig(dc, 1, cconfig.StoreTypeCassandra)
 	config.EnableEventsV2 = dc.GetBoolPropertyFnWithDomainFilter(dynamicconfig.EnableEventsV2, true)
 	return config
 }
